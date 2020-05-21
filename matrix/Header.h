@@ -5,18 +5,18 @@ class Matrix3x3
     public:
         Matrix3x3()
         {
-            values = new int* [3];
+            values = new int* [size];
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < size; i++)
             {
-                values[i] = new int[3];
-                for (int j = 0; j < 3; j++)
+                values[i] = new int[size];
+                for (int j = 0; j < size; j++)
                     values[i][j] = 0;
             }
         }
         ~Matrix3x3()
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < size; i++)
                 delete[] values[i];
             delete[] values;
         }
@@ -34,17 +34,17 @@ class Matrix3x3
         void fillRandomElements(const int minVal, const int maxVal)
         {
             srand(time(NULL));
-            for (int i = 0; i < 3; i++)
-                for (int j = 0; j < 3; j++)
+            for (int i = 0; i < size; i++)
+                for (int j = 0; j < size; j++)
                     values[i][j] = rand() % (maxVal * 2 ) + minVal;
         }
 
         void print()
         {
             srand(time(NULL));
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < size; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < size; j++)
                     std::cout << values[i][j] << '\t';
                 std::cout << std::endl;
             }
@@ -54,7 +54,7 @@ class Matrix3x3
         const int sumPrincipalDiag()
         {
             int sum = 0;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < size; i++)
                 sum += values[i][i];
             return sum;
         }
@@ -62,7 +62,7 @@ class Matrix3x3
         const int sumSecondaryDiag()
         {
             int sum = 0;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < size; i++)
                 sum += values[i][2 - i];
             return sum;
         }
@@ -70,7 +70,7 @@ class Matrix3x3
         const int productPrincipalDiag()
         {
             int result = 1;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < size; i++)
                 result *= values[i][i];
             return result;
         }
@@ -78,7 +78,7 @@ class Matrix3x3
         const int productSecondaryDiag()
         {
             int result = 1;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < size; i++)
                 result *= values[i][2 - i];
             return result;
         }
@@ -86,7 +86,7 @@ class Matrix3x3
         const int sumRow(const int iRow)
         {
             int sum = 0;
-            for (int j; j < 3; j++)
+            for (int j; j < size; j++)
                 sum = values[iRow][j];
             return sum;
         }
@@ -95,7 +95,7 @@ class Matrix3x3
         {
                 int min = values[0][iCol];
 
-                for (int i = 1; i < 3; i++)
+                for (int i = 1; i < size; i++)
                     if (min > values[i][iCol])
                         min = values[i][iCol];
                 return min;
@@ -105,7 +105,7 @@ class Matrix3x3
         {
             int max = values[0][iCol];
 
-            for (int i = 1; i < 3; i++)
+            for (int i = 1; i < size; i++)
                 if (max < values[i][iCol])
                     max = values[i][iCol];
             return max;
@@ -114,6 +114,7 @@ class Matrix3x3
 
     private:
         int **values;
+        int size = 3;
 };
 
 class MatrixXnX
