@@ -27,8 +27,8 @@ int main()
     {
         for (int j = 0, value = 1; j < m2a.size(); j++, value++)
         {
-            m2a.elementLink(i, j) = value;
-            m2b.elementLink(i, j) = value;
+            m2a.element(i, j) = value;
+            m2b.element(i, j) = value;
         }
     }
 
@@ -37,8 +37,8 @@ int main()
     {
         for (int j = 0, value = 1; j < m3a.size(); j++, value++)
         {
-            m3a.elementLink(i, j) = value;
-            m3b.elementLink(i, j) = value;
+            m3a.element(i, j) = value;
+            m3b.element(i, j) = value;
         }
     }
  
