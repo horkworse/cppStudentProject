@@ -234,7 +234,6 @@ class MatrixXnX
         int size;
 };
 
-template<typename T>
 class linkedList
 {
 	public:
@@ -250,9 +249,9 @@ class linkedList
 			clear();
 		}
 
-		void add(T value)
+		void add(int value)
 		{
-			ListNode<T>* temp = new ListNode<T>;
+			ListNode* temp = new ListNode;
 			temp->value = value;
 			temp->next = nullptr;
 
@@ -267,10 +266,10 @@ class linkedList
 			this->_count++;
 		}
 
-		bool contains(T value)
+		bool contains(int value)
 		{
-			ListNode<T>* current = _head;
-			ListNode<T>* previous = new ListNode<T>;
+			ListNode* current = _head;
+			ListNode* previous = new ListNode;
 
 			while (current->next != nullptr)
 			{
@@ -293,16 +292,16 @@ class linkedList
 			if (_head == nullptr)
 				return;
 			
-			ListNode<T>* current = _head;
+			ListNode* current = _head;
 			
 			while (current != nullptr)
 			{
-				ListNode<T>* runner = current;
+				ListNode* runner = current;
 				while (runner->next != nullptr)
 				{
 					if (runner->next->value == current->value)
 					{
-						ListNode<T>* temp = runner->next->next;
+						ListNode* temp = runner->next->next;
 						delete runner->next;
 						runner->next = nullptr;
 						_count--;
@@ -316,15 +315,15 @@ class linkedList
 			}
 		}
 
-		T findFromBack(int index)
+		int findFromBack(int index)
 		{
 			if (index > _count)
-				return T();
+				return -1;
 
 			int counter = 0;
 			int itemIndex = this->_count - index;
 
-			ListNode<T>* temp = _head;
+			ListNode* temp = _head;
 			while (counter != itemIndex)
 			{
 				temp = temp->next;
@@ -333,10 +332,10 @@ class linkedList
 			return temp->value;
 		}
 
-		bool remove(T value)
+		bool remove(int value)
 		{
-			ListNode<T>* current = _head;
-			ListNode<T>* previous = new ListNode<T>;
+			ListNode* current = _head;
+			ListNode* previous = new ListNode;
 
 			while (current->next != nullptr)
 			{
@@ -359,7 +358,7 @@ class linkedList
 			if (_head == nullptr)
 				return;
 
-			ListNode<T>* tmp;
+			ListNode* tmp;
 			while (_head != nullptr)
 			{
 				tmp = _head-> next;
@@ -377,7 +376,7 @@ class linkedList
 				return;
 			}
 
-			ListNode<T>* temp = _head;
+			ListNode* temp = _head;
 
 			while (temp != nullptr)
 			{
@@ -389,27 +388,26 @@ class linkedList
 
 	private:
 
-		template<typename T>
 		class ListNode
 		{
 			public:
 				ListNode()
 				{
-					this->value = T();
+					this->value = 0;
 					this->next = nullptr;
 				};
 
-				ListNode(T value, ListNode<T>* next)
+				ListNode(int value, ListNode* next)
 				{
 					this->value = value;
 					this->next = next;
 				};
 
-				T value;
-				ListNode<T>* next;
+				int value;
+				ListNode* next;
 		};
 
-		ListNode<T>* _head;
-		ListNode<T>* _tail;
+		ListNode* _head;
+		ListNode* _tail;
 		int _count;
 };

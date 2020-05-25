@@ -52,7 +52,7 @@ int main()
 
 
 	// Работа со связным списком
-	linkedList<int> list;
+	linkedList list;
 	// добавляем элементы в список
 	list.add(6);
 	list.add(1);
