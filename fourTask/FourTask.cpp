@@ -1,4 +1,4 @@
-﻿// 280002 Минеев Е.С.
+﻿// 280002 Минеев Е.С. 4 задание
 
 #include <iostream>
 #include <time.h>
@@ -63,7 +63,7 @@ int main()
      cout << endl << endl;
 
      // benchmarking
-     int k = 100000;
+     int k = 10000000;
      int* testArray = new int[k];
 
      srand(time(nullptr));
