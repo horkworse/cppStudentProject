@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <time.h>
+#include <chrono>
 #include "Header.h";
 
 using namespace std;
@@ -63,30 +64,25 @@ int main()
      cout << endl << endl;
 
      // benchmarking
-     int k = 10000000;
-     int* testArray = new int[k];
+    long k = 10000;
+    int* testArray = new int[k];
 
-     srand(time(nullptr));
+    srand(time(nullptr));
 
-     for (int i = 0; i < k; i++)
-         testArray[i] = rand() % 100001 - 100000;
+    for (int i = 0; i < k; i++)
+        testArray[i] = rand() % 100001 - 100000;
 
-     clock_t start;
-     clock_t end;
-     
-     start = clock();
-     Search(testArray, k, 0);
-     end = clock();
+    chrono::steady_clock::time_point start = chrono::steady_clock::now();
+    Search(testArray, k, testArray[648]);
+    chrono::steady_clock::time_point end = chrono::steady_clock::now();
 
-     float searchSeconds = (float)(end - start);
-     QuickSort(testArray, 0, k - 1);
+    cout << "Search: " <<chrono::duration_cast<chrono::nanoseconds>(end - start).count() << endl;
 
-     start = clock();
-     BSearch(0, testArray, 0, k - 1);
-     end = clock();
+    QuickSort(testArray, 0, k);
 
-     float bSearchSeconds = (float)(end - start);
+    start = chrono::steady_clock::now();
+    BSearch(testArray[648], testArray, 0, k);
+    end = chrono::steady_clock::now();
 
-     cout << "search seconds are " << searchSeconds << endl;
-     cout << "bsearch seconds are " << bSearchSeconds << endl;
+    cout << "Bsearch: " << chrono::duration_cast<chrono::nanoseconds>(end - start).count();
 }
