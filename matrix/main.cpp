@@ -1,142 +1,11 @@
-// matrixList.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
-#include <iostream>
-#include "Header.h"
+﻿#include <iostream>
+#include "LinkedList.h"
+#include "MatrixXnX.h"
+#include "Matrix3x3.h"
 
 using namespace std;
 
-linkedList::linkedList()
-{
-    this->_head = nullptr;
-    this->_tail = nullptr;
-    this->_count = 0;
-};
-
-linkedList::~linkedList()
-{
-    clear();
-}
-
-void linkedList::add(int value)
-{
-    ListNode* temp = new ListNode;
-    temp->value = value;
-    temp->next = nullptr;
-
-    if (_head == nullptr)
-    {
-        _head = temp;
-        _head->next = nullptr;
-    }
-    else
-        _tail->next = temp;
-    _tail = temp;
-    this->_count++;
-}
-
-bool linkedList::contains(int value)
-{
-    ListNode* current = _head;
-    ListNode* previous = new ListNode;
-
-    while (current->next != nullptr)
-    {
-        previous = current;
-        current = current->next;
-
-        if (current->value == value)
-            return true;
-    }
-    return false;
-}
-
-int linkedList::count()
-{
-    return this->_count;
-}
-
-void linkedList::removeDuplicates()
-{
-    if (_head == nullptr)
-        return;
-
-    ListNode* current = _head;
-
-    while (current != nullptr)
-    {
-        ListNode* runner = current;
-        while (runner->next != nullptr)
-        {
-            if (runner->next->value == current->value)
-            {
-                ListNode* temp = runner->next->next;
-                delete runner->next;
-                runner->next = nullptr;
-                _count--;
-                if (temp != nullptr)
-                    runner->next = temp;
-            }
-            else
-                runner = runner->next;
-        }
-        current = current->next;
-    }
-}
-
-int linkedList::findFromBack(int index)
-{
-    if (index > _count)
-        return -1;
-
-    int counter = 0;
-    int itemIndex = this->_count - index;
-
-    ListNode* temp = _head;
-    while (counter != itemIndex)
-    {
-        temp = temp->next;
-        counter++;
-    }
-    return temp->value;
-}
-
-bool linkedList::remove(int value)
-{
-    ListNode* current = _head;
-    ListNode* previous = new ListNode;
-
-    while (current->next != nullptr)
-    {
-        previous = current;
-        current = current->next;
-
-        if (current->value == value)
-        {
-            previous->next = current->next;
-            delete current;
-            _count--;
-            return true;
-        }
-    }
-    return false;
-}
-
-void linkedList::clear()
-{
-    if (_head == nullptr)
-        return;
-
-    ListNode* tmp;
-    while (_head != nullptr)
-    {
-        tmp = _head->next;
-        delete _head;
-        _head = tmp;
-        _count = 0;
-    }
-}
-
+// методы вывода, решил вынести сюда, чтобы не подключать iostream каждый раз
 void linkedList::print()
 {
     if (_head == nullptr)
@@ -153,6 +22,28 @@ void linkedList::print()
         temp = temp->next;
     }
     cout << endl;
+}
+
+void MatrixXnX::print()
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+            std::cout << values[i][j] << "  ";
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+void Matrix3x3::print()
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+            std::cout << values[i][j] << '\t';
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
 }
 
 int main()
@@ -203,6 +94,8 @@ int main()
 
 
 	// Работа со связным списком
+    cout << "////////////Linked list////////////" << endl << endl;
+
 	linkedList list;
 	// добавляем элементы в список
 	list.add(6);
@@ -213,13 +106,15 @@ int main()
 	list.add(5);
 	list.add(8);
 	// выводим
+    cout << "inital list: " << endl;
 	list.print();
 
 	// Выводим 3 элемент с конца
-	cout << list.findFromBack(3) << endl;
+	cout << endl << "3 element from the back is " << list.findFromBack(3) << endl << endl;
 
 	// Удаляем дубликаты
 	list.removeDuplicates();
 	// выводим
+    cout << "list without dublicates: " << endl;
 	list.print();   
 }
