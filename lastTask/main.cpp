@@ -1,21 +1,12 @@
-// 280002 Минеев Е.С. 10 задание
+﻿// 280002 Минеев Е.С. 10 задание
 
 #include <iostream>
 #include "MatrixBase.h"
+#include "Matrix2D.h"
+#include "Matrix3D.h"
 
 using namespace std;
 
-std::ostream& operator<< (std::ostream& out, const MatrixBase& matrixNd)
-{
-    for (int i = 0; i < matrixNd.m_size; i++)
-    {
-        for (int j = 0; j < matrixNd.m_size; j++)
-            out << matrixNd.element(i, j) << "  ";
-        out << '\n';
-    }
-    out << '\n';
-    return out;
-}
 
 int main()
 {
@@ -41,7 +32,7 @@ int main()
             m3b.element(i, j) = value;
         }
     }
- 
+
     cout << "inital matrix2x2" << endl << m2a << endl;
     int multipleValue = 3;
     m2a *= multipleValue;
