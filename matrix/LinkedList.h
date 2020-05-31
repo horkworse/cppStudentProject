@@ -17,17 +17,9 @@ class linkedList
         class ListNode
         {
             public:
-                ListNode()
-                {
-                    this->value = 0;
-                    this->next = nullptr;
-                };
+                ListNode();
 
-                ListNode(int value, ListNode* next)
-                {
-                    this->value = value;
-                    this->next = next;
-                };
+                ListNode(int value, ListNode* next);
 
                 int value;
                 ListNode* next;

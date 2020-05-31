@@ -3,6 +3,19 @@
 
 using namespace std;
 
+linkedList::ListNode::ListNode()
+{
+    this->value = 0;
+    this->next = nullptr;
+};
+
+linkedList::ListNode::ListNode(int value, ListNode* next)
+{
+    this->value = value;
+    this->next = next;
+}
+
+
 linkedList::linkedList()
 {
     this->_head = nullptr;
