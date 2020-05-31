@@ -14,22 +14,26 @@ int main()
     Matrix3D m3a, m3b;
 
     // заполняем матрицы 2х2 элементами
+    int value = 1;
     for (int i = 0; i < m2a.size(); i++)
     {
-        for (int j = 0, value = 1; j < m2a.size(); j++, value++)
+        for (int j = 0; j < m2a.size(); j++)
         {
             m2a.element(i, j) = value;
             m2b.element(i, j) = value;
+            value++;
         }
     }
 
     // заполняем матрицы 3х3 элементами
+    value = 1;
     for (int i = 0; i < m3a.size(); i++)
     {
-        for (int j = 0, value = 1; j < m3a.size(); j++, value++)
+        for (int j = 0; j < m3a.size(); j++)
         {
             m3a.element(i, j) = value;
             m3b.element(i, j) = value;
+            value++;
         }
     }
 
